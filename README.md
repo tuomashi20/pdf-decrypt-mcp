@@ -1,6 +1,6 @@
 # PDF解密MCP服务
 
-一个提供PDF文件解密功能的MCP（Model Context Protocol）服务器。
+一个提供PDF文件解密功能的MCP（Model Context Protocol）服务器，支持多种部署方式，特别是UVX部署。
 
 ## 功能特性
 
@@ -10,18 +10,80 @@
 - 📋 **列出PDF文件** - 列出目录中的所有PDF文件
 - 🔐 **智能密码尝试** - 自动尝试常见密码解密
 - 🌏 **中文支持** - 完全支持中文路径和文件名
+- 🚀 **UVX部署** - 支持现代化uvx部署方式
 
-## 安装
+## 安装与部署
 
-### 从源码安装
+### 🚀 UVX部署（推荐）
+
+UVX是一个现代化的Python应用程序运行器，可以轻松运行和分发Python应用程序，无需手动安装依赖。
+
+#### 前置条件
+
+1. 安装Python 3.8+
+2. 安装uvx：
+   ```bash
+   pip install uvx
+   # 或者
+   pip install pipx && pipx install uvx
+   ```
+
+#### 在Claude Code中配置UVX部署
+
+**方法1: 从GitHub直接运行（推荐）**
+
+```json
+{
+  "mcpServers": {
+    "pdf-decrypt": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/tuomashi20/pdf-decrypt-mcp", "pdf-decrypt-mcp"]
+    }
+  }
+}
+```
+
+**方法2: 使用本地项目路径**
+
+如果项目在本地：
+
+```json
+{
+  "mcpServers": {
+    "pdf-decrypt": {
+      "command": "uvx",
+      "args": ["--from", "/path/to/pdf-decrypt-mcp", "pdf-decrypt-mcp"]
+    }
+  }
+}
+```
+
+**方法3: 从PyPI安装**
+
+如果已发布到PyPI：
+
+```json
+{
+  "mcpServers": {
+    "pdf-decrypt": {
+      "command": "uvx",
+      "args": ["pdf-decrypt-mcp"]
+    }
+  }
+}
+```
+
+### 传统安装方式
+
+#### 从源码安装
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/tuomashi20/pdf-decrypt-mcp.git
 cd pdf-decrypt-mcp
 pip install -e .
 ```
 
-### 直接安装
+#### 直接安装
 
 ```bash
 pip install pdf-decrypt-mcp
@@ -31,13 +93,30 @@ pip install pdf-decrypt-mcp
 
 ### 作为MCP服务器运行
 
+#### UVX方式
+通过Claude Code配置后自动运行，无需手动启动。
+
+#### 传统方式
 ```bash
 pdf-decrypt-mcp
 ```
 
 ### 在Claude Code中配置
 
-在Claude Code的配置文件中添加：
+#### UVX配置（推荐）
+
+```json
+{
+  "mcpServers": {
+    "pdf-decrypt": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/tuomashi20/pdf-decrypt-mcp", "pdf-decrypt-mcp"]
+    }
+  }
+}
+```
+
+#### 传统配置
 
 ```json
 {
@@ -131,6 +210,14 @@ pdf-decrypt-mcp
 - aspose, pdf, decrypt, unlock
 - 等等...
 
+## 部署方式对比
+
+| 方式 | 优点 | 缺点 | 适用场景 |
+|------|------|------|----------|
+| **UVX** | 无需安装依赖、自动管理环境、部署简单 | 需要安装uvx | 推荐、生产环境 |
+| **源码安装** | 完全控制、可修改源码 | 需要手动管理依赖 | 开发、定制需求 |
+| **PyPI安装** | 安装简单 | 需要发布到PyPI | 最终用户 |
+
 ## 注意事项
 
 - 解密后的文件会在原文件名后添加"_解密版"后缀
@@ -159,7 +246,9 @@ pdf-decrypt-mcp/
 │       ├── server.py          # MCP服务器主文件
 │       └── pdf_decryptor.py   # PDF解密核心功能
 ├── pyproject.toml             # 项目配置
-└── README.md                  # 项目说明
+├── pyproject_uvx.toml         # UVX优化配置
+├── README.md                  # 项目说明
+└── README_UVX.md              # UVX详细部署指南
 ```
 
 ### 依赖项
@@ -167,6 +256,14 @@ pdf-decrypt-mcp/
 - `mcp>=1.0.0` - MCP协议支持
 - `PyPDF2>=3.0.0` - PDF文件处理
 - `PyCryptodome>=3.15.0` - 加密算法支持
+
+### 开发依赖
+
+- `pytest>=7.0.0` - 测试框架
+- `pytest-asyncio>=0.21.0` - 异步测试
+- `black>=23.0.0` - 代码格式化
+- `isort>=5.12.0` - 导入排序
+- `mypy>=1.0.0` - 类型检查
 
 ## 许可证
 
@@ -184,3 +281,9 @@ MIT License
 - 支持单个和批量PDF解密
 - 支持中文路径和文件名
 - 智能密码尝试功能
+- 新增UVX部署支持
+
+## 相关链接
+
+- **GitHub:** https://github.com/tuomashi20/pdf-decrypt-mcp
+- **详细UVX部署指南:** [README_UVX.md](https://github.com/tuomashi20/pdf-decrypt-mcp/blob/main/README_UVX.md)

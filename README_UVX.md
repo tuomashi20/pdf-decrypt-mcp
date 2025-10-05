@@ -25,7 +25,7 @@ UVX是一个现代化的Python应用程序运行器，可以轻松运行和分�
   "mcpServers": {
     "pdf-decrypt": {
       "command": "uvx",
-      "args": ["--from", "git+https://github.com/your-username/pdf-decrypt-mcp", "pdf-decrypt-mcp"]
+      "args": ["--from", "git+https://github.com/tuomashi20/pdf-decrypt-mcp", "pdf-decrypt-mcp"]
     }
   }
 }
@@ -109,7 +109,7 @@ pip install pdf-decrypt-mcp
 uvx --from /path/to/pdf-decrypt-mcp pdf-decrypt-mcp --help
 
 # 测试Git仓库
-uvx --from git+https://github.com/your-username/pdf-decrypt-mcp pdf-decrypt-mcp --help
+uvx --from git+https://github.com/tuomashi20/pdf-decrypt-mcp pdf-decrypt-mcp --help
 
 # 测试PyPI包
 uvx pdf-decrypt-mcp --help
@@ -267,7 +267,7 @@ uvx cache clean
 
 - [UVX官方文档](https://github.com/astral-sh/uvx)
 - [MCP协议文档](https://modelcontextprotocol.io/)
-- [项目源码](https://github.com/your-username/pdf-decrypt-mcp)
+- [项目源码](https://github.com/tuomashi20/pdf-decrypt-mcp)
 
 ## 📄 许可证
 

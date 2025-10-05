@@ -43,10 +43,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/your-username/pdf-decrypt-mcp"
-Repository = "https://github.com/your-username/pdf-decrypt-mcp.git"
-Documentation = "https://github.com/your-username/pdf-decrypt-mcp/blob/main/README.md"
-"Bug Tracker" = "https://github.com/your-username/pdf-decrypt-mcp/issues"
+Homepage = "https://github.com/tuomashi20/pdf-decrypt-mcp"
+Repository = "https://github.com/tuomashi20/pdf-decrypt-mcp.git"
+Documentation = "https://github.com/tuomashi20/pdf-decrypt-mcp/blob/main/README.md"
+"Bug Tracker" = "https://github.com/tuomashi20/pdf-decrypt-mcp/issues"
 
 [project.scripts]
 pdf-decrypt-mcp = "pdf_decrypt_mcp.server_fixed:main"
