@@ -1,0 +1,77 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pdf-decrypt-mcp"
+version = "1.0.0"
+description = "PDF Decryption MCP Server - 解密PDF文件的MCP服务"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.8"
+authors = [
+    {name = "PDF Decrypt Service", email = "decrypt@example.com"},
+]
+keywords = ["pdf", "decrypt", "mcp", "claude", "ai"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: General",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "mcp>=1.0.0",
+    "PyPDF2>=3.0.0",
+    "PyCryptodome>=3.15.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/your-username/pdf-decrypt-mcp"
+Repository = "https://github.com/your-username/pdf-decrypt-mcp.git"
+Documentation = "https://github.com/your-username/pdf-decrypt-mcp/blob/main/README.md"
+"Bug Tracker" = "https://github.com/your-username/pdf-decrypt-mcp/issues"
+
+[project.scripts]
+pdf-decrypt-mcp = "pdf_decrypt_mcp.server_fixed:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pdf_decrypt_mcp"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/README.md",
+    "/USAGE_GUIDE.md",
+    "/LICENSE",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
